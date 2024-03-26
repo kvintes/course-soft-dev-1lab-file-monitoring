@@ -11,6 +11,17 @@ File::File(const QString &filePath) {
         }
     }
 }
+File::File() {
+    QString filePath = "";
+    QFileInfo *temp = new QFileInfo(filePath);
+    if(temp){
+        this->filePath = QString(filePath);
+        this->isExists = temp->exists();
+        this->fileSize = temp->size();
+        delete temp;
+    }
+
+}
 QString File::getPath(){
     return filePath;
 }

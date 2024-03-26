@@ -9,6 +9,7 @@ private:
     bool isExists;
     int fileSize;
 public:
+    File();
     File(const QString &filePath);
     QString getPath();
     bool getExistsStatus();
