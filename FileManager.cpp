@@ -1,3 +1,5 @@
 #include "FileManager.h"
 
-FileManager::FileManager() {}
+FileManager::FileManager(File *files) {
+
+}
