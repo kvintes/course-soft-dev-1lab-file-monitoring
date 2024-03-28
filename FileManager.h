@@ -1,6 +1,7 @@
 #ifndef FILEMANAGER_H
 #define FILEMANAGER_H
 #include "File.h"
+#include "ILoger.h"
 
 class FileManager
 {

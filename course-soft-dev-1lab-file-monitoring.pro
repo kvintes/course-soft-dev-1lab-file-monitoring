@@ -9,6 +9,7 @@ CONFIG += c++17 cmdline
 SOURCES += \
         File.cpp \
         FileManager.cpp \
+        LogerConsole.cpp \
         main.cpp \
         testfile.cpp
 
@@ -20,4 +21,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     File.h \
     FileManager.h \
+    ILoger.h \
+    LogerConsole.h \
     testfile.h
