@@ -4,6 +4,6 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     TestFile test;
-    test.testEmpty();
+    //test.testEmpty();
     return a.exec();
 }
