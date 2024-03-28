@@ -5,7 +5,7 @@
 class ILoger
 {
 public:
-    virtual outputMessage(QString) = 0;
+    virtual void outputMessage(QString) = 0;
 };
 
 #endif // ILOGER_H

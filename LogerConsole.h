@@ -1,10 +1,11 @@
 #ifndef LOGERCONSOLE_H
 #define LOGERCONSOLE_H
+#include "ILoger.h"
 
-class LogerConsole
+class LogerConsole:public ILoger
 {
 public:
-    LogerConsole();
+    virtual void outputMessage(QString) override;
 };
 
 #endif // LOGERCONSOLE_H

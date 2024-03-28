@@ -1,3 +1,3 @@
 #include "LogerConsole.h"
 
-LogerConsole::LogerConsole() {}
+void LogerConsole::outputMessage(QString message) {}
