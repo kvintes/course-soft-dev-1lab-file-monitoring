@@ -2,6 +2,9 @@
 #define FILEMANAGER_H
 #include "File.h"
 #include "ILoger.h"
+#include <QSet>
+#include <iostream>
+#include <QDebug>
 
 class FileManager
 {
