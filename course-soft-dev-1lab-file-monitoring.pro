@@ -11,6 +11,7 @@ SOURCES += \
         FileManager.cpp \
         LogerConsole.cpp \
         main.cpp \
+        testLogerConsole.cpp \
         testfile.cpp
 
 # Default rules for deployment.
@@ -23,4 +24,5 @@ HEADERS += \
     FileManager.h \
     ILoger.h \
     LogerConsole.h \
+    testLogerConsole.h \
     testfile.h
