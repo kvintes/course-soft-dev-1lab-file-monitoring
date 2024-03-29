@@ -27,13 +27,30 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep){
             filePath = "";
         }
     }//множество путей файлов
-    for (const auto &x : setFilePaths){
-        qDebug() << x;
+    // for (const auto &x : setFilePaths){
+    //     qDebug() << x;
+    // }
+    this->size = setFilePaths.size();
+    trackedFiles = new File* [this->getSize()];
+    int j = 0;
+    for (auto i = setFilePaths.cbegin(), end = setFilePaths.cend(); i != end; ++i, ++j)
+    {
+        trackedFiles[j] = new File(*i);
     }
 
 }
 FileManager::~FileManager(){
-
+    if(this->trackedFiles){
+        if(this->getSize() > 0){
+            for(int i = 0; i < this->getSize(); ++i){
+                delete trackedFiles[i];
+            }
+        }
+        delete trackedFiles;
+    }
+}
+int FileManager::getSize(){
+    return this->size;
 }
 
 // void setLoger(ILoger *);

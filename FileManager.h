@@ -9,13 +9,15 @@
 class FileManager
 {
 private:
-    File * trackedFiles;
+    File ** trackedFiles;
+    int size;
     ILoger * loger;
 public:
     FileManager(const QString &filePaths, const QString &sep);
     FileManager(File *);
     ~FileManager();
 
+    int getSize();
     void setLoger(ILoger *);
     void setTrackedFiles(File *);
     QString checkChanges();
