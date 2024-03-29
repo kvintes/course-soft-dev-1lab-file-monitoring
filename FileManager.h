@@ -17,7 +17,9 @@ public:
     FileManager(File *);
     ~FileManager();
 
+    QString getInfo();
     int getSize();
+
     void setLoger(ILoger *);
     void setTrackedFiles(File *);
     QString checkChanges();

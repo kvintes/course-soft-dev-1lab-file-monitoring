@@ -37,7 +37,6 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep){
     {
         trackedFiles[j] = new File(*i);
     }
-
 }
 FileManager::~FileManager(){
     if(this->trackedFiles){
@@ -51,6 +50,20 @@ FileManager::~FileManager(){
 }
 int FileManager::getSize(){
     return this->size;
+}
+QString FileManager::getInfo(){
+    if(this->trackedFiles){
+        QString info;
+        if(this->getSize() > 0){
+            for(int i = 0; i < this->getSize(); ++i){
+                info += "path: " + trackedFiles[i]->getPath();
+                info += "\tstatus: " + trackedFiles[i]->getExistsStatus();
+                info += "\tsize: " + trackedFiles[i]->getSize();
+                info += "\n";
+            }
+        }
+        return info;
+    }
 }
 
 // void setLoger(ILoger *);
