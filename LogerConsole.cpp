@@ -1,5 +1,7 @@
 #include "LogerConsole.h"
+#include <QTextStream>
 
 void LogerConsole::outputMessage(QString message) {
-    std::cout<<message.toStdString()<<std::endl;
+    QTextStream out(stdout);
+    out << message << endl;
 }
