@@ -1,6 +1,7 @@
 #ifndef LOGERCONSOLE_H
 #define LOGERCONSOLE_H
 #include "ILoger.h"
+#include <iostream>
 
 class LogerConsole:public ILoger
 {
