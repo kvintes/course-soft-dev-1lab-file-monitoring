@@ -30,12 +30,14 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep){
     // for (const auto &x : setFilePaths){
     //     qDebug() << x;
     // }
+
     this->size = setFilePaths.size();
-    trackedFiles = new File* [this->getSize()];
+    trackedFiles = new File* [this->size];
     int j = 0;
-    for (auto i = setFilePaths.cbegin(), end = setFilePaths.cend(); i != end; ++i, ++j)
+    for (const auto& path : setFilePaths)
     {
-        trackedFiles[j] = new File(*i);
+        qDebug() << path;
+        trackedFiles[j++] = new File(path);
     }
 }
 FileManager::~FileManager(){
@@ -77,11 +79,15 @@ void FileManager::checkStates(){
                 }
             }
         }
+    } else {
+        QString message = "null pointers checkStates";
+        this->loger->outputMessage(message);
     }
 }
-void FileManager::checkFileChanges(QFileInfo *fileNow, File * fileOld){
+void FileManager::checkFileChanges(QFileInfo *fileNow, File* fileOld){
+    QString message;
     if(fileNow && fileOld){
-        QString message = "файл: "+fileOld->getPath();
+        message = "файл: "+fileOld->getPath();
         if(fileNow->exists() == fileOld->getExistsStatus()){
             if(!fileNow->exists() || fileNow->size() == fileOld->getSize()) return;//изменений нет
             //изменился размер
@@ -100,10 +106,14 @@ void FileManager::checkFileChanges(QFileInfo *fileNow, File * fileOld){
                 fileOld->setExistsStatus(fileNow->exists());
             }
         }
-        loger->outputMessage(message);
+        this->loger->outputMessage(message);
     }
+    message = "null pointers checkFileChanges";
+    this->loger->outputMessage(message);
 }
 
-// void setLoger(ILoger *);
+void FileManager::setLoger(ILoger *loger){
+    this->loger = loger;
+}
 // void setTrackedFiles(File *);
 // QString checkChanges();
