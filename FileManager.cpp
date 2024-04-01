@@ -107,9 +107,10 @@ void FileManager::checkFileChanges(QFileInfo *fileNow, File* fileOld){
             }
         }
         this->loger->outputMessage(message);
+    } else {
+        message = "null pointers checkFileChanges";
+        this->loger->outputMessage(message);
     }
-    message = "null pointers checkFileChanges";
-    this->loger->outputMessage(message);
 }
 
 void FileManager::setLoger(ILoger *loger){
