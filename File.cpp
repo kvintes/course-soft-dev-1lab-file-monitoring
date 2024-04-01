@@ -31,3 +31,13 @@ bool File::getExistsStatus(){
 int File::getSize(){
     return fileSize;
 }
+
+QString File::setPath(QString path){
+    return filePath = path;
+}
+bool File::setExistsStatus(bool status){
+    return isExists = status;
+}
+int File::setSize(int size){
+    return fileSize = size;
+}

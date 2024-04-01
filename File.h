@@ -14,6 +14,10 @@ public:
     QString getPath();
     bool getExistsStatus();
     int getSize();
+
+    QString setPath(QString);
+    bool setExistsStatus(bool);
+    int setSize(int);
 };
 
 #endif // FILE_H
