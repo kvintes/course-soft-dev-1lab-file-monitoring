@@ -17,6 +17,9 @@ public:
     FileManager(File *);
     ~FileManager();
 
+    void checkStates();
+    void checkFileChanges(QFileInfo *fileNow, File * fileOld);
+
     QString getInfo();
     int getSize();
 

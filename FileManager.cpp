@@ -66,6 +66,23 @@ QString FileManager::getInfo(){
     }
 }
 
+void FileManager::checkStates(){
+    if(this->trackedFiles){
+        if(this->getSize()>0){
+            for(int i = 0; i < this->getSize(); ++i){
+                QFileInfo *temp = new QFileInfo(trackedFiles[i]->getPath());
+                if(temp){
+                    this->checkFileChanges(temp, trackedFiles[i]);
+                    delete temp;
+                }
+            }
+        }
+    }
+}
+void FileManager::checkFileChanges(QFileInfo *fileNow, File * fileOld){
+
+}
+
 // void setLoger(ILoger *);
 // void setTrackedFiles(File *);
 // QString checkChanges();
