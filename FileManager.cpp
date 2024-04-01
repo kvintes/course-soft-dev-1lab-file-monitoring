@@ -80,7 +80,28 @@ void FileManager::checkStates(){
     }
 }
 void FileManager::checkFileChanges(QFileInfo *fileNow, File * fileOld){
-
+    if(fileNow && fileOld){
+        QString message = "файл: "+fileOld->getPath();
+        if(fileNow->exists() == fileOld->getExistsStatus()){
+            if(!fileNow->exists() || fileNow->size() == fileOld->getSize()) return;//изменений нет
+            //изменился размер
+            message+=QString(" существует ")
+                    +QString(" старый размер: ")+QString::number(fileOld->getSize())
+                    +QString(" новый размер: ")+QString::number(fileNow->size());
+            fileOld->setSize(fileNow->size());//сохранили новый размер
+        } else {
+            if(fileNow->exists()){//файл создали
+                message+=QString(" существует ")+QString(" размер: ")+QString::number(fileNow->size());
+                fileOld->setSize(fileNow->size());
+                fileOld->setExistsStatus(fileNow->exists());
+            } else { //файл удалили
+                message+=QString(" НЕ существует ");
+                fileOld->setSize(fileNow->size());
+                fileOld->setExistsStatus(fileNow->exists());
+            }
+        }
+        loger->outputMessage(message);
+    }
 }
 
 // void setLoger(ILoger *);

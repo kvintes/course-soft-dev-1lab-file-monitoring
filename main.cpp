@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     //TestFile test;
     //test.testEmpty();
 
-    // TestLogerConsole testLogerConsole;
-    // testLogerConsole.testOutputMessage();
+    TestLogerConsole testLogerConsole;
+    testLogerConsole.testOutputMessage();
     QString filePaths = "fewgerh/fewgerh/wegrhte";
     QString sep = "/";
     FileManager test(filePaths, sep);
