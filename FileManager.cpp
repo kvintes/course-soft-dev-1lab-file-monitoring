@@ -19,10 +19,7 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
             }
             filePath = "";
         }
-    }//множество путей файлов
-    // for (const auto &x : setFilePaths){
-    //     qDebug() << x;
-    // }
+    }
     this->size = setFilePaths.size();
     trackedFiles = new File* [this->size];
     int j = 0;
@@ -71,10 +68,9 @@ void FileManager::checkStates(){
             }
         }
     } else {
-        QString message = "null pointers checkStates";
-        this->loger->outputMessage(message);
+        QString message = "LOG: null pointers checkStates";
+        emit fileChanged(message);
     }
-    emit fileChanged("signal slot success");
 }
 void FileManager::checkFileChanges(QFileInfo *fileNow, File* fileOld){
     QString message;
@@ -98,11 +94,10 @@ void FileManager::checkFileChanges(QFileInfo *fileNow, File* fileOld){
                 fileOld->setExistsStatus(fileNow->exists());
             }
         }
-        this->loger->outputMessage(message);
     } else {
-        message = "null pointers checkFileChanges";
-        this->loger->outputMessage(message);
+        message = "LOG: null pointers checkFileChanges";
     }
+    emit fileChanged(message);
 }
 void FileManager::setLoger(ILoger *loger){
     this->loger = loger;
