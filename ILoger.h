@@ -1,9 +1,11 @@
 #ifndef ILOGER_H
 #define ILOGER_H
+#include <QObject>
 #include <QString>
 
-class ILoger
+class ILoger:public QObject
 {
+    Q_OBJECT
 public:
     virtual void outputMessage(QString) = 0;
 };

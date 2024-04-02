@@ -23,7 +23,8 @@ int main(int argc, char *argv[])
     // testLoger->outputMessage(test.getInfo());
 
     QString filePaths = "C:/Users/Acer/Downloads/test.docx";
-    FileManager fileManager(filePaths, "pppp");
+    // FileManager fileManager(filePaths, "pppp", );
+    FileManager fileManager(filePaths, "ppp");
     LogerConsole logger;
     fileManager.setLoger(&logger);
     int i = 0;

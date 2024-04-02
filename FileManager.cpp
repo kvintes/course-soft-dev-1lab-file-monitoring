@@ -1,11 +1,5 @@
 #include "FileManager.h"
-// File * trackedFiles;
-// ILoger * loger;
-
-// FileManager::FileManager(File *files) {
-
-// }
-FileManager::FileManager(const QString &argfilePaths, const QString &sep){
+FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObject *parent):QObject(parent){
     QString filePaths = argfilePaths+sep;
     QSet<QString> setFilePaths;
     QString filePath;
@@ -19,7 +13,6 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep){
         }
         if(j != sep.size()){
             filePath += filePaths[i];
-
         } else {
             if(!filePath.isEmpty()){
                 setFilePaths.insert(filePath);
@@ -30,7 +23,6 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep){
     // for (const auto &x : setFilePaths){
     //     qDebug() << x;
     // }
-
     this->size = setFilePaths.size();
     trackedFiles = new File* [this->size];
     int j = 0;
@@ -67,7 +59,6 @@ QString FileManager::getInfo(){
         return info;
     }
 }
-
 void FileManager::checkStates(){
     if(this->trackedFiles){
         if(this->getSize()>0){
@@ -83,6 +74,7 @@ void FileManager::checkStates(){
         QString message = "null pointers checkStates";
         this->loger->outputMessage(message);
     }
+    emit fileChanged("signal slot success");
 }
 void FileManager::checkFileChanges(QFileInfo *fileNow, File* fileOld){
     QString message;
@@ -112,9 +104,9 @@ void FileManager::checkFileChanges(QFileInfo *fileNow, File* fileOld){
         this->loger->outputMessage(message);
     }
 }
-
 void FileManager::setLoger(ILoger *loger){
     this->loger = loger;
+    connect(this, &FileManager::fileChanged, this->loger, &ILoger::outputMessage);
 }
 // void setTrackedFiles(File *);
 // QString checkChanges();

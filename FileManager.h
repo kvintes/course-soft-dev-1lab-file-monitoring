@@ -1,21 +1,24 @@
 #ifndef FILEMANAGER_H
 #define FILEMANAGER_H
+#include <QObject>
+
 #include "File.h"
 #include "ILoger.h"
 #include <QSet>
 #include <iostream>
 #include <QDebug>
 
-class FileManager
+class FileManager:public QObject
 {
+    Q_OBJECT
 private:
     File ** trackedFiles;
     int size;
     ILoger * loger;
 public:
-    FileManager(const QString &filePaths, const QString &sep);
+    FileManager(const QString &filePaths, const QString &sep, QObject *parent = nullptr);
     FileManager(File *);
-    ~FileManager();
+    virtual ~FileManager();
 
     void checkStates();
     void checkFileChanges(QFileInfo *fileNow, File * fileOld);
@@ -28,7 +31,7 @@ public:
     QString checkChanges();
 
 signals:
-    fileChanged();
+    void fileChanged(QString);
 };
 
 #endif // FILEMANAGER_H
