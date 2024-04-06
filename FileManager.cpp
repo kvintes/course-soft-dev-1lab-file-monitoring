@@ -20,13 +20,15 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
             filePath = "";
         }
     }
-    this->size = setFilePaths.size();
-    trackedFiles = new File* [this->size];
-    int j = 0;
-    for (const auto& path : setFilePaths)
-    {
-        qDebug() << path;
-        trackedFiles[j++] = new File(path);
+    if(setFilePaths.size() > 0){
+        this->size = setFilePaths.size();
+        trackedFiles = new File* [this->size];
+        int j = 0;
+        for (const auto& path : setFilePaths)
+        {
+            qDebug() << path;
+            trackedFiles[j++] = new File(path);
+        }
     }
 }
 FileManager::~FileManager(){
