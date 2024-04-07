@@ -4,10 +4,11 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
     QSet<QString> setFilePaths;
     QString filePath;
     for(int i = 0; i < filePaths.size(); ++i){
-        int j = 0;
-        for(; j < sep.size(); j++){
+        int j = 0;int i_temp = i;
+        for(; j < sep.size(); j++, i++){
             if(filePaths[i] != sep[j]){
                 j = -1;
+                i = i_temp;
                 break;
             }
         }
@@ -18,6 +19,7 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
                 setFilePaths.insert(filePath);
             }
             filePath = "";
+            i--;
         }
     }
     if(setFilePaths.size() > 0){

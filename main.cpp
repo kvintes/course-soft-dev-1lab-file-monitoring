@@ -8,6 +8,7 @@
 #include <thread>
 #include <chrono>
 #include <QTimer>
+#include <QDir>
 void tests(){
     TestFile testFile;
     testFile.testEmpty();
@@ -28,10 +29,11 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QString filePaths = "";
-    FileManager fileManager(filePaths, "ppp", &a);
+    QString filePaths = QDir::currentPath();
+    FileManager fileManager(filePaths, "s", &a);
 
     LogerConsole logger(&a);
+    logger.outputMessage(QDir::currentPath());
     fileManager.setLoger(&logger);
 
     QTimer timer(&a);
