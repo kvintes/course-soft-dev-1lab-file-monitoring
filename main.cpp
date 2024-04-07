@@ -31,12 +31,13 @@ int main(int argc, char *argv[])
 
     QString currentDir = QDir::currentPath();
     QString currentFilePathProject = currentDir.section("/", 0, -2);//получили папку, где лежит проект
-    QString filePaths = currentFilePathProject+"/testFiles/test.docx";
+    QString filePaths = currentFilePathProject+"/course-soft-dev-1lab-file-monitoring/testFiles/test.docx "
+                        + currentFilePathProject+"/course-soft-dev-1lab-file-monitoring/testFiles/test.jpg ";
     QString sep = " ";
     FileManager fileManager(filePaths, sep, &a);
 
     LogerConsole logger(&a);
-    logger.outputMessage(filePaths);
+    logger.outputMessage(QString("пути файлов: ")+filePaths);
     fileManager.setLoger(&logger);
 
     QTimer timer(&a);
