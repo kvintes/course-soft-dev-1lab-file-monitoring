@@ -26,7 +26,7 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
         int j = 0;
         for (const auto& path : setFilePaths)
         {
-            qDebug() << path;
+            qDebug() <<QString("файл:  ") <<path<< QString(" добавлен ")<<endl;
             trackedFiles[j++] = new File(path);
         }
     }
@@ -61,12 +61,10 @@ QString FileManager::getInfo(){
 void FileManager::checkStates(){
     if(this->trackedFiles){
         if(this->getSize()>0){
+            QFileInfo temp;
             for(int i = 0; i < this->getSize(); ++i){
-                QFileInfo *temp = new QFileInfo(trackedFiles[i]->getPath());
-                if(temp){
-                    this->checkFileChanges(temp, trackedFiles[i]);
-                    delete temp;
-                }
+                temp.setFile(trackedFiles[i]->getPath());
+                this->checkFileChanges(&temp, trackedFiles[i]);
             }
         }
     } else {
