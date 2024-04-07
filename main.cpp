@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
     //ILoger * testLoger = new LogerConsole;
     // testLoger->outputMessage(test.getInfo());
 
-    QString filePaths = "C:/Users/Acer/Downloads/test.docx";
-    // FileManager fileManager(filePaths, "pppp", );
+    QString filePaths = "C:/Users/Acer/Downloads/test.docxpppC:/Users/Acer/Downloads/IMG_test.PNG";
     FileManager fileManager(filePaths, "ppp");
     LogerConsole logger;
     fileManager.setLoger(&logger);
