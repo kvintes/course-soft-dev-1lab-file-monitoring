@@ -5,6 +5,7 @@
 class LogerConsole:public ILoger
 {
 public:
+    LogerConsole(QObject* parent):ILoger(parent){}
     virtual void outputMessage(QString) override;
 };
 

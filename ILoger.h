@@ -7,6 +7,7 @@ class ILoger:public QObject
 {
     Q_OBJECT
 public:
+    ILoger(QObject* parent):QObject(parent){}
     virtual void outputMessage(QString) = 0;
 };
 
