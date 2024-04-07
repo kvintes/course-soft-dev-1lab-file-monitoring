@@ -25,4 +25,4 @@
 
 Можно использовать бесконечный цикл, в котором будем обновлять состояние объекта (наблюдаемого файла/файлов) 100 миллисекунд
 
-(например так  std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );).
+(например так  std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );). 
