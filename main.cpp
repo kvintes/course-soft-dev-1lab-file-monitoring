@@ -7,6 +7,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <QTimer>
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -26,12 +27,20 @@ int main(int argc, char *argv[])
     FileManager fileManager(filePaths, "ppp");
     LogerConsole logger;
     fileManager.setLoger(&logger);
+    QTimer *timer = new QTimer(&a);
+    timer->start(5000);
+
     int i = 0;
-    while (true) {
-        fileManager.checkStates();
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    QObject::connect(timer, &QTimer::timeout, [&]() {
         std::cout<<"working "<<++i<<std::endl;
-    }
+        fileManager.checkStates();
+    });
+    // int i = 0;
+    // while (true) {
+    //     fileManager.checkStates();
+    //     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    //     std::cout<<"working "<<++i<<std::endl;
+    // }
 
     return a.exec();
 }
