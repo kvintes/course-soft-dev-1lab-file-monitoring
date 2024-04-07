@@ -12,7 +12,7 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
                 break;
             }
         }
-        if(j != sep.size()){
+        if(j != sep.size() || sep.size() == 0){
             filePath += filePaths[i];
         } else {
             if(!filePath.isEmpty()){
@@ -28,7 +28,7 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
         int j = 0;
         for (const auto& path : setFilePaths)
         {
-            qDebug() <<QString("файл:  ") <<path<< QString(" добавлен ")<<Qt::endl;
+            qDebug() <<QString("путь:  ") <<path<< QString(" добавлен ")<<Qt::endl;
             trackedFiles[j++] = new File(path);
         }
     } else {

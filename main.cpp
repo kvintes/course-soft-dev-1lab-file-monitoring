@@ -29,11 +29,14 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QString filePaths = QDir::currentPath();
-    FileManager fileManager(filePaths, "s", &a);
+    QString currentDir = QDir::currentPath();
+    QString currentFilePathProject = currentDir.section("/", 0, -2);//получили папку, где лежит проект
+    QString filePaths = currentFilePathProject+"/testFiles/test.docx";
+    QString sep = " ";
+    FileManager fileManager(filePaths, sep, &a);
 
     LogerConsole logger(&a);
-    logger.outputMessage(QDir::currentPath());
+    logger.outputMessage(filePaths);
     fileManager.setLoger(&logger);
 
     QTimer timer(&a);
