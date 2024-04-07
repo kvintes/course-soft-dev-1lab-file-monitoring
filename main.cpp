@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QString filePaths = "C:/Users/Acer/Downloads/test.docxpppC:/Users/Acer/Downloads/IMG_test.PNG";
+    QString filePaths = "";
     FileManager fileManager(filePaths, "ppp", &a);
 
     LogerConsole logger(&a);
@@ -47,14 +47,11 @@ int main(int argc, char *argv[])
         fileManager.checkStates();
     });
 
-
-
-    // int i = 0;
-    // while (true) {
-    //     fileManager.checkStates();
-    //     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    //     std::cout<<"working "<<++i<<std::endl;
-    // }
-
     return a.exec();
 }
+// int j = 0;
+// while (true) {
+//     fileManager.checkStates();
+//     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+//     std::cout<<"working j"<<++j<<std::endl;
+// }

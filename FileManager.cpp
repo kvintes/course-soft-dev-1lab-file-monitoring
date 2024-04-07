@@ -29,6 +29,8 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
             qDebug() <<QString("файл:  ") <<path<< QString(" добавлен ")<<Qt::endl;
             trackedFiles[j++] = new File(path);
         }
+    } else {
+        trackedFiles = nullptr;
     }
 }
 FileManager::~FileManager(){
@@ -66,6 +68,9 @@ void FileManager::checkStates(){
                 temp.setFile(trackedFiles[i]->getPath());
                 this->checkFileChanges(&temp, trackedFiles[i]);
             }
+        } else {
+            QString message = "LOG: FileManager is Empty";
+            emit fileChanged(message);
         }
     } else {
         QString message = "LOG: null pointers checkStates";
