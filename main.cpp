@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     fileManager.setLoger(&logger);
 
     QTimer timer(&a);
-    timer.start(5000);
+    timer.start(3000);
 
     QObject::connect(&a, &QCoreApplication::destroyed, [&]() {
         timer.stop();
