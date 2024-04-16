@@ -28,7 +28,7 @@ FileManager::FileManager(const QString &argfilePaths, const QString &sep, QObjec
         int j = 0;
         for (const auto& path : setFilePaths)
         {
-            qDebug() <<QString("путь:  ") <<path<< QString(" добавлен ")<<Qt::endl;
+            //qDebug() <<QString("путь:  ") <<path<< QString(" добавлен ")<<Qt::endl;
             trackedFiles[j++] = new File(path);
         }
     } else {

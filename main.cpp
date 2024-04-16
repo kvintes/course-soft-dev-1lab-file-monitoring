@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
     FileManager fileManager(filePaths, sep, &a);
 
     LogerConsole logger(&a);
-    //logger.outputMessage(QString("пути файлов: ")+filePaths);
     logger.outputMessage(fileManager.getInfo());
     fileManager.setLoger(&logger);
 
