@@ -7,28 +7,24 @@
 #include <QSet>
 #include <iostream>
 #include <QDebug>
+#include <vector>
 
 class FileManager:public QObject
 {
     Q_OBJECT
 private:
-    File ** trackedFiles;
+    std::vector<File> trackingFiles;
     int size;
     ILoger * loger;
 public:
-    FileManager(const QString &filePaths, const QString &sep, QObject *parent = nullptr);
-    FileManager(File *);
-    virtual ~FileManager();
+    FileManager(ILoger* loger = nullptr, QObject *parent = nullptr);
 
-    void checkStates();
-    void checkFileChanges(QFileInfo *fileNow, File * fileOld);
+    void addTrackedFile(const QString &filePath);
 
-    QString getInfo();
-    int getSize();
+    bool findFileInTrackingFiles(const QString &filePath);
 
-    void setLoger(ILoger *);
-    void setTrackedFiles(File *);
-    QString checkChanges();
+    void setLoger(ILoger *loger);
+    virtual ~FileManager() = default;
 
 signals:
     void fileChanged(QString);
