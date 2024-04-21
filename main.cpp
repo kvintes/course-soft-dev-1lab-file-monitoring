@@ -10,7 +10,6 @@
 
 int main(int argc, char *argv[])
 {
-    //проверка на merge
     QCoreApplication a(argc, argv);
     FileManager fileManager;
     return a.exec();
