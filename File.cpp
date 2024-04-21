@@ -1,6 +1,6 @@
-#include "file.h"
+#include "FileManager.h"
 
-File::File(const QString &filePath) {
+FileManager::File::File(const QString &filePath) {
     if(filePath.size() != 0){
         QFileInfo *temp = new QFileInfo(filePath);
         if(temp){
@@ -11,27 +11,27 @@ File::File(const QString &filePath) {
         }
     }
 }
-File::File() {
+FileManager::File::File() {
     this->filePath = QString("");
     this->isExists = false;
     this->fileSize = 0;
 }
-QString File::getPath(){
+QString FileManager::File::getPath(){
     return filePath;
 }
-bool File::getExistsStatus(){
+bool FileManager::File::getExistsStatus(){
     return isExists;
 }
-int File::getSize(){
+int FileManager::File::getSize(){
     return fileSize;
 }
 
-QString File::setPath(QString path){
+QString FileManager::File::setPath(QString path){
     return filePath = path;
 }
-bool File::setExistsStatus(bool status){
+bool FileManager::File::setExistsStatus(bool status){
     return isExists = status;
 }
-int File::setSize(int size){
+int FileManager::File::setSize(int size){
     return fileSize = size;
 }

@@ -11,8 +11,7 @@ SOURCES += \
         FileManager.cpp \
         LogerConsole.cpp \
         main.cpp \
-        testLogerConsole.cpp \
-        testfile.cpp
+        testLogerConsole.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -20,9 +19,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    File.h \
     FileManager.h \
     ILoger.h \
     LogerConsole.h \
-    testLogerConsole.h \
-    testfile.h
+    testLogerConsole.h

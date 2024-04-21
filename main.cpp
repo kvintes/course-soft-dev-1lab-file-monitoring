@@ -1,6 +1,4 @@
 #include <QCoreApplication>
-#include <TestFile.h>
-#include <testLogerConsole.h>
 
 #include <FileManager.h>
 #include <LogerConsole.h>
