@@ -10,6 +10,7 @@
 
 int main(int argc, char *argv[])
 {
+    //test commit
     QCoreApplication a(argc, argv);
     FileManager fileManager;
     return a.exec();
