@@ -34,15 +34,22 @@ private:
     std::vector<File> trackingFiles;
     int size;
     ILoger * loger;
-public:
     FileManager(ILoger* loger = nullptr, QObject *parent = nullptr);
+    virtual ~FileManager() {}
+    FileManager(FileManager const&); // реализация не нужна
+    FileManager& operator= (FileManager const&); // и тут
+
+public:
+    static FileManager& InstanceFileManager(){
+        static FileManager fileManager;
+        return fileManager;
+    }
 
     void addTrackedFile(const QString &filePath);
 
     bool findFileInTrackingFiles(const QString &filePath);
 
     void setLoger(ILoger *loger);
-    virtual ~FileManager() = default;
 
 signals:
     void fileChanged(QString);
