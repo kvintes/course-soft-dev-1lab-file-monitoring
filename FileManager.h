@@ -22,9 +22,9 @@ private:
         public:
             File();
             File(const QString &filePath);
-            QString getPath();
-            bool getExistsStatus();
-            int getSize();
+            QString getPath() const;
+            bool getExistsStatus() const;
+            int getSize() const;
 
             QString setPath(QString);
             bool setExistsStatus(bool);
@@ -34,18 +34,30 @@ private:
     std::vector<File> trackingFiles;
     int size;
     ILoger * loger;
-public:
     FileManager(ILoger* loger = nullptr, QObject *parent = nullptr);
+    virtual ~FileManager() {}
+    FileManager(FileManager const&) = delete; // реализация не нужна
+    FileManager& operator= (FileManager const&) = delete; // и тут
+
+public:
+    static FileManager& InstanceFileManager(ILoger* loger, QObject *parent){
+        static FileManager fileManager(loger, parent);
+        return fileManager;
+    }
 
     void addTrackedFile(const QString &filePath);
 
+    void checkFilesStates();
+    void checkFileChanges(const QFileInfo& fileNow, File& fileOld);
+
     bool findFileInTrackingFiles(const QString &filePath);
 
+    QString getInfo() const;
+
     void setLoger(ILoger *loger);
-    virtual ~FileManager() = default;
 
 signals:
-    void fileChanged(QString);
+    void fileChangedMessage(QString);
 };
 
 #endif // FILEMANAGER_H
