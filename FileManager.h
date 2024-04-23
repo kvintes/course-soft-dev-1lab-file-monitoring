@@ -40,8 +40,8 @@ private:
     FileManager& operator= (FileManager const&) = delete; // и тут
 
 public:
-    static FileManager& InstanceFileManager(){
-        static FileManager fileManager;
+    static FileManager& InstanceFileManager(ILoger* loger, QObject *parent){
+        static FileManager fileManager(loger, parent);
         return fileManager;
     }
 
