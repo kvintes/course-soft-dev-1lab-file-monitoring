@@ -3,7 +3,7 @@ FileManager::FileManager(ILoger* loger, QObject *parent):QObject(parent){
     this->setLoger(loger);
 }
 void FileManager::setLoger(ILoger *loger){
-    if(loger){
+    if(loger && !this->loger){
         this->loger = loger;
         connect(this, &FileManager::fileChangedMessage, this->loger, &ILoger::outputMessage);
     }
@@ -38,38 +38,54 @@ void FileManager::checkFilesStates(){
 }
 void FileManager::checkFileChanges(const QFileInfo& fileNow, FileManager::File& fileOld){
     QString message = "файл: "+fileOld.getPath();
+    // if(fileNow.exists() == fileOld.getExistsStatus()){
+    //     if(!fileNow.exists() || fileNow.size() == fileOld.getSize()) return;//изменений нет
+    //     //изменился размер
+    //         message+=QString(" существует ")
+    //                 +QString(" старый размер: ")+QString::number(fileOld.getSize())
+    //                 +QString(" новый размер: ")+QString::number(fileNow.size());
+    //         fileOld.setSize(fileNow.size());//сохранили новый размер
+    // } else {
+    //     if(fileNow.exists()){//файл создали
+    //         message+=QString(" существует ")+QString(" размер: ")+QString::number(fileNow.size());
+    //         fileOld.setSize(fileNow.size());
+    //         fileOld.setExistsStatus(fileNow.exists());
+    //     } else { //файл удалили
+    //         message+=QString(" НЕ существует ");
+    //         fileOld.setSize(fileNow.size());
+    //         fileOld.setExistsStatus(fileNow.exists());
+    //     }
+    // }
     if(fileNow.exists() == fileOld.getExistsStatus()){
         if(!fileNow.exists() || fileNow.size() == fileOld.getSize()) return;//изменений нет
         //изменился размер
         message+=QString(" существует ")
-                +QString(" старый размер: ")+QString::number(fileOld.getSize())
-                +QString(" новый размер: ")+QString::number(fileNow.size());
+                   +QString(" старый размер: ")+QString::number(fileOld.getSize())
+                   +QString(" новый размер: ")+QString::number(fileNow.size());
         fileOld.setSize(fileNow.size());//сохранили новый размер
-        } else {
+    } else {
         if(fileNow.exists()){//файл создали
             message+=QString(" существует ")+QString(" размер: ")+QString::number(fileNow.size());
-            fileOld.setSize(fileNow.size());
-            fileOld.setExistsStatus(fileNow.exists());
         } else { //файл удалили
             message+=QString(" НЕ существует ");
-            fileOld.setSize(fileNow.size());
-            fileOld.setExistsStatus(fileNow.exists());
         }
+        fileOld.setSize(fileNow.size());
+        fileOld.setExistsStatus(fileNow.exists());
     }
     emit fileChangedMessage(message);
 }
 QString FileManager::getInfo() const{
     QString info = "begining settings: \n";
     if(this->trackingFiles.size() > 0){
-        for(int i = 0; i < this->getSize(); ++i){
-            info += " path: " + trackedFiles[i]->getPath();
+        for(auto file : this->trackingFiles){
+            info += " path: " + file.getPath();
             info += "\n status: ";
-            if(trackedFiles[i]->getExistsStatus()){
+            if(file.getExistsStatus()){
                 info += " Существует ";
             } else {
                 info += " НЕ cуществует ";
             }
-            info += "\n size: " + QString::number(trackedFiles[i]->getSize());
+            info += "\n size: " + QString::number(file.getSize());
             info += "\n";
         }
     }
