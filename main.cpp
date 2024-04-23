@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 
     logger.outputMessage(instance.getInfo());
-    instance.setLoger(&logger);
+    //instance.setLoger(&logger);
 
     QTimer timer(&a);
     timer.start(5000);
