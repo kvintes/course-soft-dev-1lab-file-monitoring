@@ -28,7 +28,7 @@ bool FileManager::findFileInTrackingFiles(const QString &filePath){
 void FileManager::checkFilesStates(){
     if(this->trackingFiles.size() > 0){
         QFileInfo fileInfoNow;
-        for(auto file : this->trackingFiles){
+        for(auto & file : this->trackingFiles){
             fileInfoNow.setFile(file.getPath());
             this->checkFileChanges(fileInfoNow, file);
         }
@@ -36,26 +36,8 @@ void FileManager::checkFilesStates(){
     }
     emit fileChangedMessage(QString("LOG: trackedFiles are absent"));
 }
-void FileManager::checkFileChanges(const QFileInfo& fileNow, FileManager::File& fileOld){
+void FileManager::checkFileChanges(const QFileInfo& fileNow, File& fileOld){
     QString message = "файл: "+fileOld.getPath();
-    // if(fileNow.exists() == fileOld.getExistsStatus()){
-    //     if(!fileNow.exists() || fileNow.size() == fileOld.getSize()) return;//изменений нет
-    //     //изменился размер
-    //         message+=QString(" существует ")
-    //                 +QString(" старый размер: ")+QString::number(fileOld.getSize())
-    //                 +QString(" новый размер: ")+QString::number(fileNow.size());
-    //         fileOld.setSize(fileNow.size());//сохранили новый размер
-    // } else {
-    //     if(fileNow.exists()){//файл создали
-    //         message+=QString(" существует ")+QString(" размер: ")+QString::number(fileNow.size());
-    //         fileOld.setSize(fileNow.size());
-    //         fileOld.setExistsStatus(fileNow.exists());
-    //     } else { //файл удалили
-    //         message+=QString(" НЕ существует ");
-    //         fileOld.setSize(fileNow.size());
-    //         fileOld.setExistsStatus(fileNow.exists());
-    //     }
-    // }
     if(fileNow.exists() == fileOld.getExistsStatus()){
         if(!fileNow.exists() || fileNow.size() == fileOld.getSize()) return;//изменений нет
         //изменился размер
